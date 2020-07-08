@@ -27,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "modava\\product\\": "src"
+      "modava\\website\\": "src"
     }
   },
   "minimum-stability": "dev"
