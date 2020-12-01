@@ -24,7 +24,8 @@ class KeyValueTable extends \yii\db\ActiveRecord
     {
         $cache = Yii::$app->cache;
         $keys = [
-            'redis-key-value-get-value-by-key-' . $this->key . '-' . $this->language
+            'redis-key-value-get-value-by-key-' . $this->key . '-' . $this->language,
+            'redis-key-value-get-id-by-key-' . $this->key . '-' . $this->language
         ];
         foreach ($keys as $key) {
             $cache->delete($key);
@@ -36,7 +37,8 @@ class KeyValueTable extends \yii\db\ActiveRecord
     {
         $cache = Yii::$app->cache;
         $keys = [
-            'redis-key-value-get-value-by-key-' . $this->key . '-' . $this->language
+            'redis-key-value-get-value-by-key-' . $this->key . '-' . $this->language,
+            'redis-key-value-get-id-by-key-' . $this->key . '-' . $this->language
         ];
         foreach ($keys as $key) {
             $cache->delete($key);
@@ -55,6 +57,23 @@ class KeyValueTable extends \yii\db\ActiveRecord
             $row = $query->one();
 
             $data = $row != null ? $row->value : null;
+
+            $cache->set($key, $data);
+        }
+        return $data;
+    }
+
+    public static function getIdByKey($data_key, $language = null, $data_cache = YII2_CACHE)
+    {
+        $cache = Yii::$app->cache;
+        $key = 'redis-key-value-get-id-by-key-' . $data_key . '-' . $language;
+        $data = $cache->get($key);
+        if ($data == false || $data_cache === false) {
+            $query = self::find()->where([self::tableName() . '.key' => $data_key])->published();
+            if ($language != null) $query->andWhere([self::tableName() . '.language' => $language]);
+            $row = $query->one();
+
+            $data = $row != null ? $row->id : null;
 
             $cache->set($key, $data);
         }
