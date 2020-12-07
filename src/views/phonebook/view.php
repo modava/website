@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'attribute' => 'status',
                             'value' => function ($model) {
-                                return Yii::$app->params['status'][$model->status];
+                                return Yii::$app->getModule('website')->params['status'][$model->status];
                             }
                         ],
 						'description:ntext',
