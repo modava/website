@@ -2,10 +2,11 @@
 
 namespace modava\website\models\table;
 
+use backend\components\MyModel;
 use modava\website\models\query\KeyValueQuery;
 use Yii;
 
-class KeyValueTable extends \yii\db\ActiveRecord
+class KeyValueTable extends MyModel
 {
     const STATUS_PUBLISHED = 1;
     const STATUS_DISABLED = 0;
