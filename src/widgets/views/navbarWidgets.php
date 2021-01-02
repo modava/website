@@ -10,4 +10,10 @@ use modava\website\WebsiteModule;
             <i class="ion ion-ios-locate"></i><?= Yii::t('backend', 'Key value'); ?>
         </a>
     </li>
+    <li class="nav-item mb-5">
+        <a class="nav-link link-icon-left<?php if (Yii::$app->controller->id == 'info') echo ' active' ?>"
+           href="<?= Url::toRoute(['/website/info/update']); ?>">
+            <i class="ion ion-ios-locate"></i><?= Yii::t('backend', 'Infomation'); ?>
+        </a>
+    </li>
 </ul>

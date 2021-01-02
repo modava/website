@@ -12,7 +12,45 @@ class m200808_073103_create_talbe_website_information extends Migration
      */
     public function safeUp()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
+        }
 
+        $this->createTable('{{%website_info}}', [
+            'id' => $this->primaryKey(),
+            'site_name' => $this->string(255)->notNull(),
+            'phone' => $this->json()->null(),
+            'landline' => $this->json()->null(),
+            'fax' => $this->json()->null(),
+            'email' => $this->json()->null(),
+            'address' => $this->json()->null(),
+            'language' => $this->string(25)->null(),
+            'status' => $this->smallInteger(1)->notNull()->defaultValue(1),
+            'created_at' => $this->integer(11)->null(),
+            'updated_at' => $this->integer(11)->null(),
+            'created_by' => $this->integer(11)->null(),
+            'updated_by' => $this->integer(11)->null(),
+        ], $tableOptions);
+
+        $this->addForeignKey('fk-website_info-created_by-user_id', 'website_info', 'created_by', 'user', 'id', 'RESTRICT', 'CASCADE');
+        $this->addForeignKey('fk-website_info-updated_by-user_id', 'website_info', 'updated_by', 'user', 'id', 'RESTRICT', 'CASCADE');
+
+        $this->insert('website_info', [
+            'id' => 1,
+            'site_name' => 'Site name',
+            'phone' => [],
+            'landline' => [],
+            'fax' => [],
+            'email' => [],
+            'address' => [],
+            'language' => null,
+            'status' => 1,
+            'created_at' => time(),
+            'updated_at' => time(),
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
     }
 
     /**
@@ -20,9 +58,7 @@ class m200808_073103_create_talbe_website_information extends Migration
      */
     public function safeDown()
     {
-        echo "m200808_073103_create_talbe_website_information cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('{{%website_info}}');
     }
 
     /*
