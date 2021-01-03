@@ -20,6 +20,7 @@ use Yii;
     * @property array $email
     * @property array $address
     * @property string $language
+    * @property string $logo
     * @property int $status
     * @property int $created_at
     * @property int $updated_at
@@ -63,7 +64,7 @@ class WebsiteInfo extends WebsiteInfoTable
 			[['site_name'], 'required'],
 			[['phone', 'landline', 'fax', 'email', 'address', 'about'], 'safe'],
 			[['status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-			[['site_name'], 'string', 'max' => 255],
+			[['site_name', 'logo'], 'string', 'max' => 255],
 			[['language'], 'string', 'max' => 25],
 			[['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['created_by' => 'id']],
 			[['updated_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['updated_by' => 'id']],
@@ -85,6 +86,7 @@ class WebsiteInfo extends WebsiteInfoTable
             'email' => Yii::t('backend', 'Email'),
             'address' => Yii::t('backend', 'Address'),
             'language' => Yii::t('backend', 'Language'),
+            'logo' => Yii::t('backend', 'logo'),
             'status' => Yii::t('backend', 'Status'),
             'created_at' => Yii::t('backend', 'Created At'),
             'updated_at' => Yii::t('backend', 'Updated At'),

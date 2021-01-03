@@ -107,7 +107,19 @@ use unclead\multipleinput\MultipleInput;
         ])->label(false);
         ?>
     </div>
-
+    <div class="col-12">
+        <?php
+        if (empty($model->getErrors()))
+            $path = Yii::$app->params['info']['150x150']['folder'];
+        else
+            $path = null;
+        echo \modava\tiny\FileManager::widget([
+            'model' => $model,
+            'attribute' => 'logo',
+            'path' => $path,
+            'label' => Yii::t('backend', 'logo') . ': ' . Yii::$app->params['info-size'],
+        ]); ?>
+    </div>
     <?php if (Yii::$app->controller->action->id == 'create') $model->status = 1; ?>
     <?= $form->field($model, 'status')->checkbox() ?>
     <div class="form-group">
