@@ -2,12 +2,11 @@
 
 namespace modava\website\models\table;
 
-use cheatsheet\Time;
+use backend\components\MyModel;
 use modava\website\models\query\WebsiteInfoQuery;
 use Yii;
-use yii\db\ActiveRecord;
 
-class WebsiteInfoTable extends \yii\db\ActiveRecord
+class WebsiteInfoTable extends MyModel
 {
     const STATUS_DISABLED = 0;
     const STATUS_PUBLISHED = 1;
