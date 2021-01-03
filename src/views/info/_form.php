@@ -93,6 +93,20 @@ use unclead\multipleinput\MultipleInput;
             ?>
         </div>
     </div>
+    <div class="col-6">
+        <?= $form->field($model, 'about')->widget(MultipleInput::class, [
+            'max' => 6,
+            'allowEmptyList' => true,
+            'columns' => [
+                [
+                    'name' => 'about',
+                    'type' => 'textArea',
+                    'title' => Yii::t('backend', 'Giới thiệu'),
+                ]
+            ]
+        ])->label(false);
+        ?>
+    </div>
 
     <?php if (Yii::$app->controller->action->id == 'create') $model->status = 1; ?>
     <?= $form->field($model, 'status')->checkbox() ?>

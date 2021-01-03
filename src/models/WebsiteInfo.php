@@ -13,6 +13,7 @@ use Yii;
 *
     * @property int $id
     * @property string $site_name
+    * @property array $about
     * @property array $phone
     * @property array $landline
     * @property array $fax
@@ -60,7 +61,7 @@ class WebsiteInfo extends WebsiteInfoTable
     {
         return [
 			[['site_name'], 'required'],
-			[['phone', 'landline', 'fax', 'email', 'address'], 'safe'],
+			[['phone', 'landline', 'fax', 'email', 'address', 'about'], 'safe'],
 			[['status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
 			[['site_name'], 'string', 'max' => 255],
 			[['language'], 'string', 'max' => 25],
@@ -77,8 +78,9 @@ class WebsiteInfo extends WebsiteInfoTable
         return [
             'id' => Yii::t('backend', 'ID'),
             'site_name' => Yii::t('backend', 'Site Name'),
+            'about' => Yii::t('backend', 'Giới thiệu'),
             'phone' => Yii::t('backend', 'Phone'),
-            'landline' => Yii::t('backend', 'Landline'),
+            'landline' => Yii::t('backend', 'Điện thoại bàn'),
             'fax' => Yii::t('backend', 'Fax'),
             'email' => Yii::t('backend', 'Email'),
             'address' => Yii::t('backend', 'Address'),
