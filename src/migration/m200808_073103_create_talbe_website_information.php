@@ -20,6 +20,7 @@ class m200808_073103_create_talbe_website_information extends Migration
         $this->createTable('{{%website_info}}', [
             'id' => $this->primaryKey(),
             'site_name' => $this->string(255)->notNull(),
+            'about' => $this->json()->null(),
             'phone' => $this->json()->null(),
             'landline' => $this->json()->null(),
             'fax' => $this->json()->null(),
@@ -39,6 +40,7 @@ class m200808_073103_create_talbe_website_information extends Migration
         $this->insert('website_info', [
             'id' => 1,
             'site_name' => 'Site name',
+            'about' => [],
             'phone' => [],
             'landline' => [],
             'fax' => [],
